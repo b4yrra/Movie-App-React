@@ -1,11 +1,13 @@
 import { CarouselBar } from "@/components/ui/carouselBar";
 import { Header } from "@/components/ui/header";
+import { Movies } from "@/components/ui/movieCards";
 
 export default function Home() {
   return (
-    <div className="max-md:w-full">
+    <div>
       <Header />
       <CarouselBar />
+      <Movies />
     </div>
   );
 }
