@@ -15,7 +15,7 @@ export const CarouselBar = () => {
     <div>
       <Carousel>
         <CarouselContent>
-          {Array.from({ length: 5 }).map((_, index) => (
+          {Array.from({ length: 3 }).map((_, index) => (
             <CarouselItem className="flex flex-col items-center" key={index}>
               <div className="w-full lg:max-w-360 lg:w-full">
                 <div className="bg-[url(/Wicked.jpg)] bg-cover bg-no-repeat w-full bg-center flex items-center h-100 md:h-140 lg:h-190 relative">
@@ -31,7 +31,7 @@ export const CarouselBar = () => {
                         </h1>
                       </div>
                       <div className="flex gap-2">
-                        <Star className=" text-yellow-400" />
+                        <Star fill="yellow" className=" text-yellow-400" />
                         <h2 className="text-slate-600 text-[16px] xl:text-[16px]">
                           <span className="font-semibold text-[18px] text-white xl:text-[18px]">
                             6.9

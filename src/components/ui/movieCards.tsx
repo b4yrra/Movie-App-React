@@ -2,23 +2,23 @@ import { Star } from "lucide-react";
 
 export const MovieCards = () => {
   return (
-    <div className="flex flex-col p-7 rounded-lg">
-      <div className="bg-slate-200 rounded-lg">
+    <div className="flex flex-col items-center rounded-lg">
+      <div className="rounded-lg bg-slate-200 w-[157.5px] lg:w-[229.729736328125px] md:w-50">
         <img
           src="/dearsanta.jpg"
           alt=""
-          className="w-full h-[233.1px] lg:w-[229.729736328125px] lg:h-85"
+          className="w-[157.5px] h-[233.1px] md:h-75 lg:h-85 lg:w-[229.729736328125px] md:w-50"
         />
-        <div className="flex gap-2 px-2">
-          <Star className=" text-yellow-400" />
-          <div className="text-slate-600 text-[14px] xl:text-[16px]">
-            <span className="font-semibold text-[16px] text-black xl:text-[18px]">
+        <div className="flex gap-1 px-2 items-center">
+          <Star className=" text-yellow-400" size={17} fill="yellow" />
+          <div className="text-slate-600 text-[12px] lg:text-[14px]">
+            <span className="font-semibold text-[14px] text-black lg:text-[16px]">
               6.9
             </span>
             /10
           </div>
         </div>
-        <h1 className="px-2 h-10 w-[141.5px]">Dear Santa</h1>
+        <h1 className="px-2 h-12 w-[141.5px] overflow-hidden">Dear Santa</h1>
       </div>
     </div>
   );
@@ -27,7 +27,7 @@ export const MovieCards = () => {
 export const Movies = () => {
   return (
     <div className="flex justify-center">
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 w-full lg:max-w-360 lg:w-full">
+      <div className="grid grid-cols-2 gap-3 sm:gap-4 sm:grid-cols-3 md:gap-5 md:grid-cols-4 lg:gap-6 lg:grid-cols-5 w-full lg:max-w-360 lg:w-full">
         <MovieCards />
         <MovieCards />
         <MovieCards />
