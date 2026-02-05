@@ -1,11 +1,9 @@
-import { CarouselBar } from "@/components/ui/carouselBar";
-import { Header } from "@/components/ui/header";
-import { Movies } from "@/components/ui/movieCards";
+import { CarouselBar } from "@/components/carousel-bar";
+import { Movies } from "@/components/movie-categories";
 
 export default function Home() {
   return (
     <div>
-      <Header />
       <CarouselBar />
       <Movies />
     </div>
