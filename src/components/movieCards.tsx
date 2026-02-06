@@ -3,7 +3,7 @@ import { Star } from "lucide-react";
 export const MovieCards = () => {
   return (
     <div className="flex flex-col items-center rounded-lg">
-      <div className="rounded-lg bg-[#F4F4F5] dark:bg-[#27272A] w-full max-w-[157.5px] sm:max-w-[180px] md:max-w-[200px] lg:max-w-[230px]">
+      <div className="rounded-lg bg-[#F4F4F5] dark:bg-[#27272A] w-full max-w-[157.5px] sm:max-w-45 md:max-w-50 lg:max-w-57.5">
         <img
           src="/dearsanta.jpg"
           alt="Dear Santa"
