@@ -21,7 +21,7 @@ export function HeaderDropdownMenuDemo() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline">
+        <Button variant="outline" className="cursor-pointer">
           <ArrowDown size={15} /> Genre
         </Button>
       </DropdownMenuTrigger>
@@ -61,7 +61,7 @@ export const GenreNames = (props: GenreNamesProps) => {
 
   return (
     <Link href={onClick}>
-      <div className="flex items-center border px-3 py-1 rounded-xl text-[12px] font-semibold hover:bg-slate-200">
+      <div className="flex items-center border px-3 py-1 rounded-xl text-[12px] font-semibold hover:bg-slate-200 dark:hover:bg-slate-700">
         {text}
       </div>
     </Link>
