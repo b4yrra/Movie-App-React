@@ -1,3 +1,16 @@
 export const MovieInfo = () => {
-  return <div></div>;
+  return (
+    <div>
+      <div>
+        <div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+
+      <div></div>
+
+      <div></div>
+    </div>
+  );
 };
