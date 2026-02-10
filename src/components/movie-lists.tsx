@@ -32,7 +32,7 @@ export const MovieList = ({ movies }: MovieListProps) => {
                 </div>
               </div>
               <h1 className="text-sm md:text-base font-medium text-black dark:text-white line-clamp-2 w-30 h-12">
-                {movie.original_name || movie.name}
+                {movie.title}
               </h1>
             </div>
           </div>

@@ -31,7 +31,7 @@ export const CarouselBar = ({ movies }: CarouselBarProps) => {
         onMouseEnter={plugin.current.stop}
         onMouseLeave={plugin.current.reset}
       >
-        <CarouselNext className="absolute z-10 right-10 bg-white text-black w-10 h-10 hover:bg-gray-400 max-lg:hidden" />
+        <CarouselNext className="absolute z-10 right-10 backdrop-blur-md bg-white/30 text-black w-10 h-10 hover:bg-gray-400 max-lg:hidden" />
         <CarouselContent>
           {movies.slice(0, 3).map((card) => (
             <CarouselItem className="flex flex-col items-center" key={card.id}>
@@ -51,14 +51,14 @@ export const CarouselBar = ({ movies }: CarouselBarProps) => {
                           Now Playing:
                         </p>
                         <h1 className="text-[24px] font-semibold text-black xl:text-[36px] md:text-white dark:text-white">
-                          {card.name}
+                          {card.title}
                         </h1>
                       </div>
                       <div className="flex gap-2">
                         <Star fill="yellow" className="text-yellow-400" />
                         <h2 className="text-slate-600 text-[16px] xl:text-[16px]">
                           <span className="font-semibold text-[18px] text-black xl:text-[18px] md:text-white dark:text-white">
-                            {card.vote_average}
+                            {card.vote_average.toFixed(1)}
                           </span>
                           /10
                         </h2>
@@ -70,7 +70,7 @@ export const CarouselBar = ({ movies }: CarouselBarProps) => {
                       </p>
                     </div>
                     <div className="p-7">
-                      <button className="flex gap-2 px-4 py-2 rounded-lg text-[14px] font-medium bg-black text-white md:text-black md:bg-white dark:text-black dark:bg-white">
+                      <button className="flex gap-2 px-4 py-2 rounded-lg text-[14px] font-medium bg-black text-white md:text-black md:bg-white dark:text-black dark:bg-white cursor-pointer">
                         <Play />
                         Watch Trailer
                       </button>
@@ -81,7 +81,7 @@ export const CarouselBar = ({ movies }: CarouselBarProps) => {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious className="absolute left-10 bg-white text-black w-10 h-10 hover:bg-gray-400 z-10 max-lg:hidden" />
+        <CarouselPrevious className="absolute left-10 backdrop-blur-md bg-white/30 text-black w-10 h-10 hover:bg-gray-400 z-10 max-lg:hidden" />
       </Carousel>
     </div>
   );
