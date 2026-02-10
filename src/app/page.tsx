@@ -1,13 +1,16 @@
 import { CarouselBar } from "@/components/carousel-bar";
-import { Movies } from "@/components/movie-categories";
-import { MovieInfo } from "@/components/movie-info";
+import { Movies } from "@/components/movie-homepage";
+import { getNowPlayingMovies } from "@/lib/api";
 
-export default function Home() {
+const Home = async () => {
+  const { results: NowPlaying } = await getNowPlayingMovies();
   return (
     <div>
-      {/* <CarouselBar />
-      <Movies /> */}
-      <MovieInfo />
+      <CarouselBar movies={NowPlaying} />
+      <Movies />
+      {/* <MovieInfo /> */}
     </div>
   );
-}
+};
+
+export default Home;

@@ -11,36 +11,17 @@ import {
 import { Star } from "lucide-react";
 import { Play } from "lucide-react";
 import Autoplay from "embla-carousel-autoplay";
+import { Movie } from "@/lib/types";
 
-const carouselMovies = [
-  {
-    id: 1,
-    img: "/Wicked.jpg",
-    name: "Wicked",
-    rating: 6.9,
-    desc: "Elphaba, a misunderstood young woman because of her green skin, and Glinda, a popular girl, become friends at Shiz University in the Land of Oz. After an encounter with the Wonderful Wizard of Oz, their friendship reaches a crossroads. ",
-  },
+const TMBD_IMG_URL = "https://image.tmdb.org/t/p/original";
 
-  {
-    id: 2,
-    img: "/Glad.png",
-    name: "Gladiator II",
-    rating: 6.9,
-    desc: "After his home is conquered by the tyrannical emperors who now lead Rome, Lucius is forced to enter the Colosseum and must look to his past to find strength to return the glory of Rome to its people.",
-  },
+type CarouselBarProps = {
+  movies: Movie[];
+};
 
-  {
-    id: 3,
-    img: "/Moana.jpg",
-    name: "Moana 2",
-    rating: 6.9,
-    desc: "After receiving an unexpected call from her wayfinding ancestors, Moana must journey to the far seas of Oceania and into dangerous, long-lost waters for an adventure unlike anything she's ever faced.",
-  },
-];
-
-export const CarouselBar = () => {
+export const CarouselBar = ({ movies }: CarouselBarProps) => {
   const plugin = React.useRef(
-    Autoplay({ delay: 1000, stopOnInteraction: true }),
+    Autoplay({ delay: 5000, stopOnInteraction: true }),
   );
 
   return (
@@ -52,13 +33,13 @@ export const CarouselBar = () => {
       >
         <CarouselNext className="absolute z-10 right-10 bg-white text-black w-10 h-10 hover:bg-gray-400 max-lg:hidden" />
         <CarouselContent>
-          {carouselMovies.map((card) => (
+          {movies.slice(0, 3).map((card) => (
             <CarouselItem className="flex flex-col items-center" key={card.id}>
               <div className="w-full lg:w-full relative">
                 <div className="h-80 md:h-140 lg:h-190 xl:h-220 md:flex md:items-center">
                   <img
-                    src={card.img}
-                    alt={card.name}
+                    src={`${TMBD_IMG_URL}${card.backdrop_path}`}
+                    alt={card.original_name}
                     className="w-full h-full object-cover object-center md:absolute md:inset-0 md:-z-10"
                   />
                 </div>
@@ -77,7 +58,7 @@ export const CarouselBar = () => {
                         <Star fill="yellow" className="text-yellow-400" />
                         <h2 className="text-slate-600 text-[16px] xl:text-[16px]">
                           <span className="font-semibold text-[18px] text-black xl:text-[18px] md:text-white dark:text-white">
-                            {card.rating}
+                            {card.vote_average}
                           </span>
                           /10
                         </h2>
@@ -85,7 +66,7 @@ export const CarouselBar = () => {
                     </div>
                     <div className="px-7">
                       <p className="text-black lg:w-100 md:w-90 text-[12px] md:text-white dark:text-white">
-                        {card.desc}
+                        {card.overview}
                       </p>
                     </div>
                     <div className="p-7">
