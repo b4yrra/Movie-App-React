@@ -11,7 +11,7 @@ const TMBD_IMG_URL_ORIGINAL = "https:image.tmdb.org/t/p/original";
 
 export const MovieDetails = ({ movie }: MovieListProps) => {
   return (
-    <div className="w-360 w-max-full">
+    <div className="w-360 w-max-full my-20">
       <div className="flex flex-col gap-5">
         <div className="flex justify-between w-full">
           <div className="flex flex-col gap-4">
@@ -49,7 +49,15 @@ export const MovieDetails = ({ movie }: MovieListProps) => {
             className="rounded-t-lg object-cover w-270 h-107 max-w-full"
           />
         </div>
-        {}
+        <div className="flex flex-wrap gap-2">
+          {movie?.genres.map((genre) => (
+            <Badge key={genre.id} variant={"outline"}>
+              {genre.name}
+            </Badge>
+          ))}
+        </div>
+        <div className="text-[16px]">{movie.overview}</div>
+        <div></div>
       </div>
     </div>
   );

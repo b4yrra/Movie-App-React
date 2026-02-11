@@ -4,14 +4,17 @@ import Link from "next/link";
 
 type MovieListProps = {
   movies: Movie[];
+  showAll?: boolean;
 };
 
 const TMBD_IMG_URL = "https://image.tmdb.org/t/p/w500";
 
-export const MovieList = ({ movies }: MovieListProps) => {
+export const MovieList = ({ movies, showAll = false }: MovieListProps) => {
+  const displayed = showAll ? movies : movies.slice(0, 10);
+
   return (
     <>
-      {movies.slice(0, 10).map((movie) => (
+      {displayed.map((movie) => (
         <Link
           href={`/${movie.id}`}
           key={movie.id}
