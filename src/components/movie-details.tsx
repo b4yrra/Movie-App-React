@@ -1,45 +1,82 @@
-import { MovieDetailResponse } from "@/lib/types";
+import { Genre, MovieDetailResponse } from "@/lib/types";
 import { Star } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 
 type MovieListProps = {
-  movies: MovieDetailResponse[];
+  movie: MovieDetailResponse;
 };
 
-const TMBD_IMG_URL = "https://image.tmdb.org/t/p/w500";
+const TMBD_IMG_URL = "https:image.tmdb.org/t/p/w500";
+const TMBD_IMG_URL_ORIGINAL = "https:image.tmdb.org/t/p/original";
 
-export const MovieDetails = ({ movies }: MovieListProps) => {
-  console.log("movies:", movies);
-
+export const MovieDetails = ({ movie }: MovieListProps) => {
   return (
-    <>
-      {movies.map((movie) => (
-        <div
-          key={movie.id}
-          className="flex flex-col items-center rounded-lg hover:scale-105 cursor-pointer transition-transform duration-300 ease-in-out group"
-        >
-          <div className="rounded-lg bg-[#F4F4F5] dark:bg-[#27272A] w-full overflow-hidden">
-            <img
-              src={`${TMBD_IMG_URL}${movie.poster_path}`}
-              alt={movie.title}
-              className="w-full rounded-t-lg object-cover transition-all duration-300 group-hover:brightness-80"
-            />
-            <div className="p-2 space-y-1">
-              <div className="flex gap-1 items-center">
-                <Star className="text-yellow-400" size={17} fill="yellow" />
-                <div className="text-slate-600 text-[12px] lg:text-[14px] dark:text-[#A1A1AA]">
-                  <span className="font-semibold text-[14px] text-black lg:text-[16px] dark:text-white">
-                    {movie.vote_average.toFixed(1)}
-                  </span>
-                  /10
-                </div>
+    <div className="w-360 w-max-full">
+      <div className="flex flex-col gap-5">
+        <div className="flex justify-between w-full">
+          <div className="flex flex-col gap-4">
+            <h1 className="text-[36px] font-bold">{movie.title}</h1>
+            <div className="flex gap-4 text-[18px]">
+              <div>{movie.release_date}</div>
+              <div>
+                {Math.floor(movie.runtime / 60)}h {movie.runtime % 60}m
               </div>
-              <h1 className="text-sm md:text-base font-medium text-black dark:text-white line-clamp-2">
-                {movie.title}
-              </h1>
+            </div>
+          </div>
+          <div className="flex flex-col gap-2">
+            <p>Rating</p>
+            <div className="flex items-center gap-2">
+              <Star className="text-yellow-400" size={28} fill="yellow" />
+              <div className="text-slate-600 text-[12px] lg:text-[14px] dark:text-[#A1A1AA]">
+                <span className="font-semibold text-[14px] text-black lg:text-[16px] dark:text-white">
+                  {movie.vote_average.toFixed(1)}
+                </span>
+                /10
+                <div className="text-[#71717A]">{movie.vote_count}</div>
+              </div>
             </div>
           </div>
         </div>
-      ))}
-    </>
+        <div className="flex justify-around">
+          <img
+            src={`${TMBD_IMG_URL}${movie.poster_path}`}
+            alt={movie.title}
+            className="rounded-t-lg object-cover w-72.5 h-107 max-w-full"
+          />
+          <img
+            src={`${TMBD_IMG_URL_ORIGINAL}${movie.backdrop_path}`}
+            alt={movie.title}
+            className="rounded-t-lg object-cover w-270 h-107 max-w-full"
+          />
+        </div>
+      </div>
+    </div>
   );
 };
+
+/* <div
+  key={movie.id}
+  className="flex flex-col items-center rounded-lg hover:scale-105 cursor-pointer transition-transform duration-300 ease-in-out group"
+>
+  <div className="rounded-lg bg-[#F4F4F5] dark:bg-[#27272A] w-full overflow-hidden">
+    <img
+      src={`${TMBD_IMG_URL}${movie.poster_path}`}
+      alt={movie.title}
+      className="w-full rounded-t-lg object-cover transition-all duration-300 group-hover:brightness-80"
+    />
+    <div className="p-2 space-y-1">
+      <div className="flex gap-1 items-center">
+        <Star className="text-yellow-400" size={17} fill="yellow" />
+        <div className="text-slate-600 text-[12px] lg:text-[14px] dark:text-[#A1A1AA]">
+          <span className="font-semibold text-[14px] text-black lg:text-[16px] dark:text-white">
+            {movie.vote_average.toFixed(1)}
+          </span>
+          /10
+        </div>
+      </div>
+      <h1 className="text-sm md:text-base font-medium text-black dark:text-white line-clamp-2">
+        {movie.title}
+      </h1>
+    </div>
+  </div>
+</div>; */

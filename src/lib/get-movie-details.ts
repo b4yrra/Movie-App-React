@@ -2,7 +2,7 @@ import { MovieDetailResponse } from "./types";
 
 // This function gets a SINGLE movie by ID
 export const getMovieDetails = async (
-  movieId: number,
+  movieId: string,
 ): Promise<MovieDetailResponse> => {
   const movieDetailsUrl = `https://api.themoviedb.org/3/movie/${movieId}?language=en-US`;
 
