@@ -49,6 +49,7 @@ export const MovieDetails = ({ movie }: MovieListProps) => {
             className="rounded-t-lg object-cover w-270 h-107 max-w-full"
           />
         </div>
+        {}
       </div>
     </div>
   );
