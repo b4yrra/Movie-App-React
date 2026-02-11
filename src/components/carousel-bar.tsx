@@ -31,7 +31,7 @@ export const CarouselBar = ({ movies }: CarouselBarProps) => {
         onMouseEnter={plugin.current.stop}
         onMouseLeave={plugin.current.reset}
       >
-        <CarouselNext className="absolute z-10 right-10 backdrop-blur-md bg-white/30 text-black w-10 h-10 hover:bg-gray-400 max-lg:hidden" />
+        <CarouselNext className="absolute z-10 right-10 backdrop-blur-md bg-white/30 text-black w-12 h-12 hover:bg-gray-400 max-lg:hidden" />
         <CarouselContent>
           {movies.slice(0, 3).map((card) => (
             <CarouselItem className="flex flex-col items-center" key={card.id}>
@@ -81,7 +81,7 @@ export const CarouselBar = ({ movies }: CarouselBarProps) => {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious className="absolute left-10 backdrop-blur-md bg-white/30 text-black w-10 h-10 hover:bg-gray-400 z-10 max-lg:hidden" />
+        <CarouselPrevious className="absolute left-10 backdrop-blur-md bg-white/30 text-black w-12 h-12 hover:bg-gray-400 z-10 max-lg:hidden" />
       </Carousel>
     </div>
   );

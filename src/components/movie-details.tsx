@@ -1,27 +1,27 @@
-import { Movie } from "@/lib/types";
+import { MovieDetailResponse } from "@/lib/types";
 import { Star } from "lucide-react";
-import Link from "next/link";
 
 type MovieListProps = {
-  movies: Movie[];
+  movies: MovieDetailResponse[];
 };
 
 const TMBD_IMG_URL = "https://image.tmdb.org/t/p/w500";
 
-export const MovieList = ({ movies }: MovieListProps) => {
+export const MovieDetails = ({ movies }: MovieListProps) => {
+  console.log("movies:", movies);
+
   return (
     <>
-      {movies.slice(0, 10).map((movie) => (
-        <Link
-          href={`/${movie.id}`}
+      {movies.map((movie) => (
+        <div
           key={movie.id}
           className="flex flex-col items-center rounded-lg hover:scale-105 cursor-pointer transition-transform duration-300 ease-in-out group"
         >
-          <div className="rounded-lg bg-[#F4F4F5] dark:bg-[#27272A] w-full max-w-[157.5px] sm:max-w-45 md:max-w-50 lg:max-w-57.5">
+          <div className="rounded-lg bg-[#F4F4F5] dark:bg-[#27272A] w-full overflow-hidden">
             <img
               src={`${TMBD_IMG_URL}${movie.poster_path}`}
-              alt={movie.original_name}
-              className="w-full h-auto rounded-t-lg object-cover transition-all duration-300 group-hover:brightness-80"
+              alt={movie.title}
+              className="w-full rounded-t-lg object-cover transition-all duration-300 group-hover:brightness-80"
             />
             <div className="p-2 space-y-1">
               <div className="flex gap-1 items-center">
@@ -33,12 +33,12 @@ export const MovieList = ({ movies }: MovieListProps) => {
                   /10
                 </div>
               </div>
-              <h1 className="text-sm md:text-base font-medium text-black dark:text-white line-clamp-2 w-30 h-12">
+              <h1 className="text-sm md:text-base font-medium text-black dark:text-white line-clamp-2">
                 {movie.title}
               </h1>
             </div>
           </div>
-        </Link>
+        </div>
       ))}
     </>
   );
