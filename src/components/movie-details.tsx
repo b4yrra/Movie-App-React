@@ -1,6 +1,8 @@
 import { Genre, MovieDetailResponse } from "@/lib/types";
 import { Star } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { MovieDirectors } from "./movie-credits";
+import { getCredtiDetails } from "@/lib/get-credit-details";
 
 type MovieListProps = {
   movie: MovieDetailResponse;
@@ -9,11 +11,13 @@ type MovieListProps = {
 const TMBD_IMG_URL = "https:image.tmdb.org/t/p/w500";
 const TMBD_IMG_URL_ORIGINAL = "https:image.tmdb.org/t/p/original";
 
-export const MovieDetails = ({ movie }: MovieListProps) => {
+export const MovieDetails = async ({ movie }: MovieListProps) => {
+  const credits = await getCredtiDetails(movie.id);
+
   return (
-    <div className="w-360 w-max-full my-20">
-      <div className="flex flex-col gap-5">
-        <div className="flex justify-between w-full">
+    <div className="w-360 max-w-full my-20">
+      <div className="flex flex-col gap-5 max-lg:px-4">
+        <div className="flex justify-between w-full items-center">
           <div className="flex flex-col gap-4">
             <h1 className="text-[36px] font-bold">{movie.title}</h1>
             <div className="flex gap-4 text-[18px]">
@@ -37,17 +41,19 @@ export const MovieDetails = ({ movie }: MovieListProps) => {
             </div>
           </div>
         </div>
-        <div className="flex justify-around">
+        <div className="flex gap-5 justify-center max-md:flex-col">
           <img
             src={`${TMBD_IMG_URL}${movie.poster_path}`}
             alt={movie.title}
             className="rounded-t-lg object-cover w-72.5 h-107 max-w-full"
           />
-          <img
-            src={`${TMBD_IMG_URL_ORIGINAL}${movie.backdrop_path}`}
-            alt={movie.title}
-            className="rounded-t-lg object-cover w-270 h-107 max-w-full"
-          />
+          <div>
+            <img
+              src={`${TMBD_IMG_URL_ORIGINAL}${movie.backdrop_path}`}
+              alt={movie.title}
+              className="rounded-t-lg object-cover w-270 h-107 max-w-full brightness-80"
+            />
+          </div>
         </div>
         <div className="flex flex-wrap gap-2">
           {movie?.genres.map((genre) => (
@@ -56,8 +62,10 @@ export const MovieDetails = ({ movie }: MovieListProps) => {
             </Badge>
           ))}
         </div>
-        <div className="text-[16px]">{movie.overview}</div>
-        <div></div>
+        <div className="text-[16px] max-w-full w-360">{movie.overview}</div>
+        <div>
+          <MovieDirectors credit={credits} />
+        </div>
       </div>
     </div>
   );

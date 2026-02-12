@@ -9,9 +9,6 @@ const topRatedMovieUrl =
 const nowPlayingMovieUrl =
   "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1";
 
-const movieDirectors =
-  "https://api.themoviedb.org/3/movie/${id}/credits?language=en-US";
-
 const token = process.env.TMDB_TOKEN;
 
 const options = {
@@ -45,13 +42,6 @@ export const getTopRatedMovies = async (): Promise<Response> => {
 
 export const getNowPlayingMovies = async (): Promise<Response> => {
   const response = await fetch(nowPlayingMovieUrl, options);
-  const data = await response.json();
-
-  return data;
-};
-
-export const getMovieDirectors = async (): Promise<Response> => {
-  const response = await fetch(movieDirectors, options);
   const data = await response.json();
 
   return data;

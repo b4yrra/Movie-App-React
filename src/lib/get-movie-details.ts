@@ -1,6 +1,5 @@
 import { MovieDetailResponse } from "./types";
 
-// This function gets a SINGLE movie by ID
 export const getMovieDetails = async (
   movieId: string,
 ): Promise<MovieDetailResponse> => {

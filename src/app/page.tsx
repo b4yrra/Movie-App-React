@@ -8,7 +8,6 @@ const Home = async () => {
     <div>
       <CarouselBar movies={NowPlaying} />
       <Movies />
-      {/* <MovieInfo /> */}
     </div>
   );
 };
