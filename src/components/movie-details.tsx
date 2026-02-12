@@ -3,6 +3,8 @@ import { Star } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { MovieDirectors } from "./movie-credits";
 import { getCredtiDetails } from "@/lib/get-credit-details";
+import { Play } from "lucide-react";
+import { Button } from "./ui/button";
 
 type MovieListProps = {
   movie: MovieDetailResponse;
@@ -47,12 +49,18 @@ export const MovieDetails = async ({ movie }: MovieListProps) => {
             alt={movie.title}
             className="rounded-t-lg object-cover w-72.5 h-107 max-w-full"
           />
-          <div>
+          <div className="relative">
             <img
               src={`${TMBD_IMG_URL_ORIGINAL}${movie.backdrop_path}`}
               alt={movie.title}
-              className="rounded-t-lg object-cover w-270 h-107 max-w-full brightness-80"
+              className="rounded-t-lg object-cover w-270 h-107 max-w-full brightness-50"
             />
+            <div className="flex gap-3 items-center absolute left-5 bottom-5">
+              <Button className="cursor-pointer rounded-full">
+                <Play />
+              </Button>
+              <div>Play Trailer</div>
+            </div>
           </div>
         </div>
         <div className="flex flex-wrap gap-2">
