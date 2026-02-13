@@ -1,7 +1,7 @@
-import { MovieList } from "@/components/movie-lists";
-import { CategoriesReturn } from "@/components/moviecard-tags";
 import { Pagination } from "@/components/ui/pagination";
 import { getUpcomingMovies } from "@/lib/api";
+import { CategoriesReturn } from "../components/moviecard-tags";
+import { MovieList } from "../components/movie-lists";
 
 export default async function Movies() {
   const { results: UpcomingMovies } = await getUpcomingMovies();

@@ -1,6 +1,6 @@
 import { getNowPlayingMovies } from "@/lib/api";
 import { CarouselBar } from "./components/carousel-bar";
-import Movies from "./popular/page";
+import { Movies } from "./components/movie-homepage";
 
 const Home = async () => {
   const { results: NowPlaying } = await getNowPlayingMovies();
