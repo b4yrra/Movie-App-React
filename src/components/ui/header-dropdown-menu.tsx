@@ -13,11 +13,18 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { GenreValue } from "@/lib/types";
 import { ArrowDown } from "lucide-react";
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 
-export function HeaderDropdownMenuDemo() {
+type HeaderDropdownMenuDemoProps = {
+  genres: GenreValue[];
+};
+
+export function HeaderDropdownMenuDemo({
+  genres,
+}: HeaderDropdownMenuDemoProps) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -34,16 +41,9 @@ export function HeaderDropdownMenuDemo() {
         </DropdownMenuGroup>
         <DropdownMenuGroup>
           <div className="flex flex-wrap pt-4 gap-3">
-            <GenreNames text="Action" onClick="" />
-            <GenreNames text="Adventure" onClick="" />
-            <GenreNames text="Animation" onClick="" />
-            <GenreNames text="Biography" onClick="" />
-            <GenreNames text="Comedy" onClick="" />
-            <GenreNames text="Crime" onClick="" />
-            <GenreNames text="Documentary" onClick="" />
-            <GenreNames text="Drama" onClick="" />
-            <GenreNames text="Family" onClick="" />
-            <GenreNames text="Fantasy" onClick="" />
+            {genres.map((g) => (
+              <div key={g.id}>{g.name}</div>
+            ))}
           </div>
         </DropdownMenuGroup>
       </DropdownMenuContent>

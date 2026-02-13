@@ -4,7 +4,9 @@ import { Badge } from "@/components/ui/badge";
 import { MovieDirectors } from "./movie-credits";
 import { getCredtiDetails } from "@/lib/get-credit-details";
 import { Play } from "lucide-react";
-import { Button } from "./ui/button";
+
+import { MoreLike } from "./more-like-this-footer";
+import { Button } from "@/components/ui/button";
 
 type MovieListProps = {
   movie: MovieDetailResponse;
@@ -35,7 +37,7 @@ export const MovieDetails = async ({ movie }: MovieListProps) => {
               <Star className="text-yellow-400" size={28} fill="yellow" />
               <div className="text-slate-600 text-[12px] lg:text-[14px] dark:text-[#A1A1AA]">
                 <span className="font-semibold text-[14px] text-black lg:text-[16px] dark:text-white">
-                  {movie.vote_average.toFixed(1)}
+                  {(movie.vote_average ?? 0).toFixed(1)}
                 </span>
                 /10
                 <div className="text-[#71717A]">{movie.vote_count}</div>
@@ -63,16 +65,21 @@ export const MovieDetails = async ({ movie }: MovieListProps) => {
             </div>
           </div>
         </div>
-        <div className="flex flex-wrap gap-2">
-          {movie?.genres.map((genre) => (
-            <Badge key={genre.id} variant={"outline"}>
-              {genre.name}
-            </Badge>
-          ))}
-        </div>
+        {movie.genres && movie.genres.length > 0 && (
+          <div className="flex flex-wrap gap-2">
+            {movie.genres.map((genre) => (
+              <Badge key={genre.id} variant={"outline"}>
+                {genre.name}
+              </Badge>
+            ))}
+          </div>
+        )}
         <div className="text-[16px] max-w-full w-360">{movie.overview}</div>
         <div>
           <MovieDirectors credit={credits} />
+        </div>
+        <div>
+          <MoreLike movieId={movie.id} />
         </div>
       </div>
     </div>

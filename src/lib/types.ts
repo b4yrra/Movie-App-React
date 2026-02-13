@@ -73,3 +73,12 @@ export interface SpokenLanguage {
   iso_639_1: string;
   name: string;
 }
+
+export interface GenreResponse {
+  genres: GenreValue[];
+}
+
+export interface GenreValue {
+  id: string;
+  name: string;
+}

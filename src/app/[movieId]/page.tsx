@@ -1,5 +1,5 @@
-import { MovieDetails } from "@/components/movie-details";
 import { getMovieDetails } from "@/lib/get-movie-details";
+import { MovieDetails } from "../components/movie-details";
 
 const Home = async ({ params }: { params: Promise<{ movieId: string }> }) => {
   const { movieId } = await params;
