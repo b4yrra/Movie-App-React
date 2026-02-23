@@ -1,4 +1,4 @@
-import { GenreResponse, Response } from "./types";
+import { Response, Genre, GenresResponse } from "./types";
 
 const popularMovieUrl =
   "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1";
@@ -50,7 +50,7 @@ export const getNowPlayingMovies = async (): Promise<Response> => {
   return data;
 };
 
-export const getMovieGenres = async (): Promise<GenreResponse> => {
+export const getMovieGenres = async (): Promise<GenresResponse> => {
   const response = await fetch(MovieGenres, options);
   const data = await response.json();
 

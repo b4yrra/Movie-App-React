@@ -10,11 +10,11 @@ type MoreLikeThisMoviesProps = {
 const TMBD_IMG_URL = "https://image.tmdb.org/t/p/w500";
 
 export const MoreLikeThisMovies = ({
-  movies,
+  movies = [],
   showAll = false,
 }: MoreLikeThisMoviesProps) => {
-  console.log(movies);
-  const displayed = showAll ? movies : (movies?.slice(0, 5) ?? []);
+  // Ensure `displayed` is always an array so `.map` is safe
+  const displayed = (showAll ? movies : movies.slice(0, 5)) ?? [];
 
   return (
     <>

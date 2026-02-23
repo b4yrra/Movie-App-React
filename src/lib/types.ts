@@ -74,11 +74,11 @@ export interface SpokenLanguage {
   name: string;
 }
 
-export interface GenreResponse {
-  genres: GenreValue[];
+export interface GenresResponse {
+  genres: Genre[];
 }
 
-export interface GenreValue {
-  id: string;
+export interface Genre {
+  id: number;
   name: string;
 }

@@ -13,17 +13,16 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { GenreValue } from "@/lib/types";
+import { Genre } from "@/lib/types";
 import { ArrowDown } from "lucide-react";
 import Link from "next/link";
 
 type HeaderDropdownMenuDemoProps = {
-  genres: GenreValue[];
+  movie?: { genres?: Genre[] };
 };
 
-export function HeaderDropdownMenuDemo({
-  genres,
-}: HeaderDropdownMenuDemoProps) {
+export function HeaderDropdownMenuDemo({ movie }: HeaderDropdownMenuDemoProps) {
+  const genres = movie?.genres ?? [];
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -48,19 +47,19 @@ export function HeaderDropdownMenuDemo({
   );
 }
 
-type GenreNamesProps = {
-  text: string;
-  onClick: string;
-};
+// type GenreNamesProps = {
+//   text: string;
+//   onClick: string;
+// };
 
-export const GenreNames = (props: GenreNamesProps) => {
-  const { text, onClick } = props;
+// export const GenreNames = (props: GenreNamesProps) => {
+//   const { text, onClick } = props;
 
-  return (
-    <Link href={onClick}>
-      <div className="flex items-center border px-3 py-1 rounded-xl text-[12px] font-semibold hover:bg-slate-200 dark:hover:bg-slate-700">
-        {text}
-      </div>
-    </Link>
-  );
-};
+//   return (
+//     <Link href={onClick}>
+//       <div className="flex items-center border px-3 py-1 rounded-xl text-[12px] font-semibold hover:bg-slate-200 dark:hover:bg-slate-700">
+//         {text}
+//       </div>
+//     </Link>
+//   );
+// };

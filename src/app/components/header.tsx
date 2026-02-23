@@ -1,4 +1,4 @@
-import { Film } from "lucide-react";
+import { Film, SearchIcon } from "lucide-react";
 import { Search } from "lucide-react";
 
 import Link from "next/link";
@@ -6,10 +6,16 @@ import Link from "next/link";
 import { getMovieGenres } from "@/lib/api";
 import { HeaderDropdownMenuDemo } from "@/components/ui/header-dropdown-menu";
 import { ModeToggle } from "./ModeToggle";
+import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupInput,
+} from "@/components/ui/input-group";
 
 export const Header = async () => {
   const genresData = await getMovieGenres();
-  const genres = genresData.genres || [];
+
+  console.log("genres", genresData);
 
   return (
     <div className="flex justify-between items-center h-14 px-5 py-5 pb-5 xl:px-20">
@@ -24,15 +30,15 @@ export const Header = async () => {
       <div className="max-md:hidden md:block">
         <div className="flex gap-3">
           <div>
-            <HeaderDropdownMenuDemo genres={genres} />
+            <HeaderDropdownMenuDemo movie={genresData} />
           </div>
-          <div className="border-2 border-[#E4E4E7] dark:border-[#27272A] flex px-1 items-center rounded-lg gap-3">
-            <Search className="w-4 text-slate-500" />
-            <input
-              type="text"
-              className="outline-none xl:w-94.75"
-              placeholder="Search"
-            />
+          <div>
+            <InputGroup>
+              <InputGroupInput placeholder="Search..." />
+              <InputGroupAddon>
+                <SearchIcon />
+              </InputGroupAddon>
+            </InputGroup>
           </div>
         </div>
       </div>

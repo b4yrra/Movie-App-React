@@ -45,11 +45,11 @@ export const MovieDetails = async ({ movie }: MovieListProps) => {
             </div>
           </div>
         </div>
-        <div className="flex gap-5 justify-center max-md:flex-col">
+        <div className="flex gap-5 justify-center">
           <img
             src={`${TMBD_IMG_URL}${movie.poster_path}`}
             alt={movie.title}
-            className="rounded-t-lg object-cover w-72.5 h-107 max-w-full"
+            className="rounded-t-lg object-cover w-72.5 h-107 max-w-full max-md:hidden"
           />
           <div className="relative">
             <img
