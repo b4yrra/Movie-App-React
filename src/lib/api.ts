@@ -9,8 +9,7 @@ const topRatedMovieUrl =
 const nowPlayingMovieUrl =
   "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1";
 
-const MovieGenres =
-  "https://api.themoviedb.org/3/movie/genre/movie/list?language=en";
+const MovieGenres = "https://api.themoviedb.org/3/genre/movie/list?language=en";
 
 const token = process.env.TMDB_TOKEN;
 

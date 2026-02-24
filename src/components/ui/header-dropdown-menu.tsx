@@ -16,6 +16,8 @@ import {
 import { Genre } from "@/lib/types";
 import { ArrowDown } from "lucide-react";
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import { Badge } from "./badge";
 
 type HeaderDropdownMenuDemoProps = {
   movie?: { genres?: Genre[] };
@@ -39,7 +41,13 @@ export function HeaderDropdownMenuDemo({ movie }: HeaderDropdownMenuDemoProps) {
         </DropdownMenuGroup>
         <div className="flex flex-wrap pt-4 gap-3">
           {genres.map((g) => (
-            <DropdownMenuItem key={g.id}>{g.name}</DropdownMenuItem>
+            <Button
+              variant="outline"
+              key={g.id}
+              className="cursor-pointer rounded-full text-[12px]"
+            >
+              {g.name} <ArrowRight />
+            </Button>
           ))}
         </div>
       </DropdownMenuContent>

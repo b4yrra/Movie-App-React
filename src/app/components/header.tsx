@@ -11,6 +11,7 @@ import {
   InputGroupAddon,
   InputGroupInput,
 } from "@/components/ui/input-group";
+import { SearchInput } from "./search-input";
 
 export const Header = async () => {
   const genresData = await getMovieGenres();
@@ -33,12 +34,7 @@ export const Header = async () => {
             <HeaderDropdownMenuDemo movie={genresData} />
           </div>
           <div>
-            <InputGroup>
-              <InputGroupInput placeholder="Search..." />
-              <InputGroupAddon>
-                <SearchIcon />
-              </InputGroupAddon>
-            </InputGroup>
+            <SearchInput />
           </div>
         </div>
       </div>
