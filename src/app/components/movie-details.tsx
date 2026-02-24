@@ -4,7 +4,6 @@ import { Badge } from "@/components/ui/badge";
 import { MovieDirectors } from "./movie-credits";
 import { getCredtiDetails } from "@/lib/get-credit-details";
 import { Play } from "lucide-react";
-
 import { MoreLike } from "./more-like-this-footer";
 import { Button } from "@/components/ui/button";
 
