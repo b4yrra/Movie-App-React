@@ -6,6 +6,8 @@ import { getCredtiDetails } from "@/lib/get-credit-details";
 import { Play } from "lucide-react";
 import { MoreLike } from "./more-like-this-footer";
 import { Button } from "@/components/ui/button";
+import { MovieTrailer } from "./movie-trailer";
+import { getMovieDetails as getMovieTrailers } from "@/lib/api";
 
 type MovieListProps = {
   movie: MovieDetailResponse;
@@ -16,10 +18,11 @@ const TMBD_IMG_URL_ORIGINAL = "https:image.tmdb.org/t/p/original";
 
 export const MovieDetails = async ({ movie }: MovieListProps) => {
   const credits = await getCredtiDetails(movie.id);
+  const trailers = await getMovieTrailers(movie.id);
 
   return (
     <div className="w-360 max-w-full my-20">
-      <div className="flex flex-col gap-5 max-lg:px-4">
+      <div className="flex flex-col gap-5 px-4">
         <div className="flex justify-between w-full items-center">
           <div className="flex flex-col gap-4">
             <h1 className="text-[36px] font-bold">{movie.title}</h1>
@@ -50,18 +53,8 @@ export const MovieDetails = async ({ movie }: MovieListProps) => {
             alt={movie.title}
             className="rounded-t-lg object-cover w-72.5 h-107 max-w-full max-md:hidden"
           />
-          <div className="relative">
-            <img
-              src={`${TMBD_IMG_URL_ORIGINAL}${movie.backdrop_path}`}
-              alt={movie.title}
-              className="rounded-t-lg object-cover w-270 h-107 max-w-full brightness-50"
-            />
-            <div className="flex gap-3 items-center absolute left-5 bottom-5">
-              <Button className="cursor-pointer rounded-full">
-                <Play />
-              </Button>
-              <div>Play Trailer</div>
-            </div>
+          <div className="max-w-full w-190 h-107">
+            <MovieTrailer movie={movie} trailers={trailers} />
           </div>
         </div>
         {movie.genres && movie.genres.length > 0 && (

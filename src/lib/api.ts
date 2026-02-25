@@ -1,4 +1,4 @@
-import { Response, Genre, GenresResponse } from "./types";
+import { Response, Genre, GenresResponse, Trailer } from "./types";
 
 const MovieUrl = "https://api.themoviedb.org/3/movie/";
 
@@ -62,6 +62,25 @@ export const getNowPlayingMovies = async (): Promise<Response> => {
 
 export const getMovieGenres = async (): Promise<GenresResponse> => {
   const response = await fetch(MovieGenres, options);
+  const data = await response.json();
+
+  return data;
+};
+
+export const getMovieDetails = async (movieId: string): Promise<Trailer> => {
+  const MovieTrailer = `https://api.themoviedb.org/3/movie/${movieId}/videos?language=en-US`;
+
+  const token = process.env.TMDB_TOKEN;
+
+  const options = {
+    method: "GET",
+    headers: {
+      accept: "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  const response = await fetch(MovieTrailer, options);
   const data = await response.json();
 
   return data;
