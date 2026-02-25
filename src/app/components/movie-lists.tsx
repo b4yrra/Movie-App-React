@@ -9,8 +9,9 @@ type MovieListProps = {
 
 const TMBD_IMG_URL = "https://image.tmdb.org/t/p/w500";
 
-export const MovieList = ({ movies, showAll = false }: MovieListProps) => {
-  const displayed = showAll ? movies : movies.slice(0, 10);
+export const MovieList = ({ movies = [], showAll = false }: MovieListProps) => {
+  const Movies = movies ?? [];
+  const displayed = showAll ? Movies : Movies.slice(0, 10);
 
   return (
     <>

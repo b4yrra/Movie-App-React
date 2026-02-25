@@ -2,8 +2,9 @@ import { SimilarResponse } from "./more-like-type";
 
 export const getSimilarMovies = async (
   movieId: string,
+  page: string | undefined,
 ): Promise<SimilarResponse> => {
-  const similarMovies = `https://api.themoviedb.org/3/movie/${movieId}/similar?language=en-US&page=1`;
+  const similarMovies = `https://api.themoviedb.org/3/movie/${movieId}/similar?language=en-US&page=${page ?? 1}`;
 
   const token = process.env.TMDB_TOKEN;
 

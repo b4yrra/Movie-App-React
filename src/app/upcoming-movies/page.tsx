@@ -4,8 +4,15 @@ import { CategoriesReturn } from "../components/moviecard-tags";
 import { MovieList } from "../components/movie-lists";
 import { PaginationBar } from "../components/pagination";
 
-export default async function Movies() {
-  const { results: UpcomingMovies } = await getUpcomingMovies();
+type MoviesProps = {
+  searchParams: Promise<{ page: string | undefined }>;
+};
+
+export default async function Movies({ searchParams }: MoviesProps) {
+  const { page } = await searchParams;
+
+  const { results: UpcomingMovies, total_pages } =
+    await getUpcomingMovies(page);
 
   return (
     <div className="flex flex-col items-center w-full mb-30">
@@ -15,7 +22,10 @@ export default async function Movies() {
           <MovieList movies={UpcomingMovies} showAll={true} />
         </div>
         <div className="mt-10">
-          <PaginationBar />
+          <PaginationBar
+            currentPage={Number(page) || 1}
+            totalPages={total_pages}
+          />
         </div>
       </div>
     </div>

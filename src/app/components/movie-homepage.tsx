@@ -7,9 +7,9 @@ import { MovieList } from "./movie-lists";
 import { CategoriesTag } from "./moviecard-tags";
 
 export const Movies = async ({ category }: { category?: string }) => {
-  const { results: PopularMovies } = await getPopularMovies();
-  const { results: UpcomingMovies } = await getUpcomingMovies();
-  const { results: TopRatedMovies } = await getTopRatedMovies();
+  const { results: PopularMovies } = await getPopularMovies(undefined);
+  const { results: UpcomingMovies } = await getUpcomingMovies(undefined);
+  const { results: TopRatedMovies } = await getTopRatedMovies(undefined);
   return (
     <div className="flex flex-col items-center w-full mb-20">
       <div className="max-w-full">

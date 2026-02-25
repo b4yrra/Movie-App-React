@@ -5,10 +5,11 @@ type MovieDirectorsProps = {
 };
 
 export const MovieDirectors = ({ credit }: MovieDirectorsProps) => {
-  const directors = credit.crew.filter((el) => el.job === "Director");
-  const writers = credit.crew.filter(
-    (el) => el.known_for_department === "Writing",
-  );
+  const crew = credit?.crew ?? [];
+  const cast = credit?.cast ?? [];
+
+  const directors = crew.filter((el) => el.job === "Director");
+  const writers = crew.filter((el) => el.known_for_department === "Writing");
   return (
     <div className="flex flex-col">
       {directors.length > 0 && (
@@ -30,11 +31,11 @@ export const MovieDirectors = ({ credit }: MovieDirectorsProps) => {
           </p>
         </div>
       )}
-      {credit.cast.length > 0 && (
+      {cast.length > 0 && (
         <div className="flex items-center gap-10 border-b py-6">
           <h3 className="font-semibold text-lg">Stars</h3>
           <p className="text-gray-700 dark:text-gray-400">
-            {credit.cast
+            {cast
               .slice(0, 3)
               .map((c) => c.name)
               .join(" · ")}

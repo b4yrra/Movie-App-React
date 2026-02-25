@@ -19,7 +19,7 @@ type CarouselBarProps = {
   movies: Movie[];
 };
 
-export const CarouselBar = ({ movies }: CarouselBarProps) => {
+export const CarouselBar = ({ movies = [] }: CarouselBarProps) => {
   const plugin = React.useRef(
     Autoplay({ delay: 5000, stopOnInteraction: true }),
   );
@@ -33,7 +33,7 @@ export const CarouselBar = ({ movies }: CarouselBarProps) => {
       >
         <CarouselNext className="absolute z-10 right-10 backdrop-blur-md bg-white/30 text-black w-12 h-12 hover:bg-gray-400 max-lg:hidden" />
         <CarouselContent>
-          {movies.slice(0, 3).map((card) => (
+          {(movies ?? []).slice(0, 3).map((card) => (
             <CarouselItem className="flex flex-col items-center" key={card.id}>
               <div className="w-full lg:w-full relative">
                 <div className="h-80 md:h-140 lg:h-190 xl:h-220 md:flex md:items-center">
@@ -44,7 +44,7 @@ export const CarouselBar = ({ movies }: CarouselBarProps) => {
                   />
                 </div>
                 <div className="md:absolute md:inset-0 md:flex md:items-center md:ml-30">
-                  <div>
+                  <div className="backdrop-blur-xl bg-black/10 rounded-xl">
                     <div className="p-7">
                       <div>
                         <p className="text-[14px] text-black xl:text-[16px] md:text-white dark:text-white">

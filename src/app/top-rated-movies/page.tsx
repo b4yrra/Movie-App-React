@@ -1,9 +1,17 @@
-import { MovieList } from "@/components/movie-lists";
-import { CategoriesReturn } from "@/components/moviecard-tags";
 import { getTopRatedMovies } from "@/lib/api";
+import { PaginationBar } from "../components/pagination";
+import { MovieList } from "../components/movie-lists";
+import { CategoriesReturn } from "../components/moviecard-tags";
 
-export default async function Movies() {
-  const { results: TopRatedMovies } = await getTopRatedMovies();
+type MoviesProps = {
+  searchParams: Promise<{ page: string | undefined }>;
+};
+
+export default async function Movies({ searchParams }: MoviesProps) {
+  const { page } = await searchParams;
+
+  const { results: TopRatedMovies, total_pages } =
+    await getTopRatedMovies(page);
 
   return (
     <div className="flex flex-col items-center w-full mb-30">
@@ -11,6 +19,12 @@ export default async function Movies() {
         <CategoriesReturn onClick={"/"} text="Popular Movies" />
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-5 gap-4 md:gap-6 p-4">
           <MovieList movies={TopRatedMovies} showAll={true} />
+        </div>
+        <div className="mt-10">
+          <PaginationBar
+            currentPage={Number(page) || 1}
+            totalPages={total_pages}
+          />
         </div>
       </div>
     </div>

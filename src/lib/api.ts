@@ -1,11 +1,7 @@
 import { Response, Genre, GenresResponse } from "./types";
 
-const popularMovieUrl =
-  "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1";
-const upcomingMovieUrl =
-  "https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1";
-const topRatedMovieUrl =
-  "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1";
+const MovieUrl = "https://api.themoviedb.org/3/movie/";
+
 const nowPlayingMovieUrl =
   "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1";
 
@@ -21,22 +17,37 @@ const options = {
   },
 };
 
-export const getPopularMovies = async (): Promise<Response> => {
-  const response = await fetch(popularMovieUrl, options);
+export const getPopularMovies = async (
+  page: string | undefined,
+): Promise<Response> => {
+  const response = await fetch(
+    `${MovieUrl}popular?language=en-US&page=${page ?? 1}`,
+    options,
+  );
   const data = await response.json();
 
   return data;
 };
 
-export const getUpcomingMovies = async (): Promise<Response> => {
-  const response = await fetch(upcomingMovieUrl, options);
+export const getUpcomingMovies = async (
+  page: string | undefined,
+): Promise<Response> => {
+  const response = await fetch(
+    `${MovieUrl}upcoming?language=en-US&page=${page ?? 1}`,
+    options,
+  );
   const data = await response.json();
 
   return data;
 };
 
-export const getTopRatedMovies = async (): Promise<Response> => {
-  const response = await fetch(topRatedMovieUrl, options);
+export const getTopRatedMovies = async (
+  page: string | undefined,
+): Promise<Response> => {
+  const response = await fetch(
+    `${MovieUrl}top_rated?language=en-US&page=${page ?? 1}`,
+    options,
+  );
   const data = await response.json();
 
   return data;

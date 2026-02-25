@@ -1,18 +1,25 @@
 import { MoreLikeThisMovies } from "@/app/components/more-like-movie-lists";
 import { CategoriesReturn } from "@/app/components/moviecard-tags";
+import { PaginationBar } from "@/app/components/pagination";
 import { getSimilarMovies } from "@/lib/get-more-like";
 
 const Home = async ({ params }: { params: Promise<{ movieId: string }> }) => {
   const { movieId } = await params;
 
-  const movie = await getSimilarMovies(movieId);
+  const movieResponse = await getSimilarMovies(movieId, undefined);
+
+  const currentPage = 1;
+  const total_pages = movieResponse?.total_pages;
 
   return (
     <div className="flex flex-col items-center w-full mb-30">
       <div className="max-w-full">
         <CategoriesReturn onClick={"/"} text="More Like This" />
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-5 gap-4 md:gap-6 p-4">
-          <MoreLikeThisMovies movies={movie.results} showAll={true} />
+          <MoreLikeThisMovies movies={movieResponse.results} showAll={true} />
+        </div>
+        <div className="mt-10">
+          <PaginationBar currentPage={currentPage} totalPages={total_pages} />
         </div>
       </div>
     </div>
