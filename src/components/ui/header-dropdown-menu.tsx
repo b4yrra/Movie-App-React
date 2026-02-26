@@ -17,7 +17,6 @@ import { Genre } from "@/lib/types";
 import { ArrowDown } from "lucide-react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { Badge } from "./badge";
 
 type HeaderDropdownMenuDemoProps = {
   movie?: { genres?: Genre[] };
@@ -41,33 +40,17 @@ export function HeaderDropdownMenuDemo({ movie }: HeaderDropdownMenuDemoProps) {
         </DropdownMenuGroup>
         <div className="flex flex-wrap pt-4 gap-3">
           {genres.map((g) => (
-            <Button
-              variant="outline"
-              key={g.id}
-              className="cursor-pointer rounded-full text-[12px]"
-            >
-              {g.name} <ArrowRight />
-            </Button>
+            <Link key={g.id} href={`/genre?genre=${g.id}`}>
+              <Button
+                variant="outline"
+                className="cursor-pointer rounded-full text-[12px]"
+              >
+                {g.name} <ArrowRight />
+              </Button>
+            </Link>
           ))}
         </div>
       </DropdownMenuContent>
     </DropdownMenu>
   );
 }
-
-// type GenreNamesProps = {
-//   text: string;
-//   onClick: string;
-// };
-
-// export const GenreNames = (props: GenreNamesProps) => {
-//   const { text, onClick } = props;
-
-//   return (
-//     <Link href={onClick}>
-//       <div className="flex items-center border px-3 py-1 rounded-xl text-[12px] font-semibold hover:bg-slate-200 dark:hover:bg-slate-700">
-//         {text}
-//       </div>
-//     </Link>
-//   );
-// };

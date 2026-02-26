@@ -3,7 +3,6 @@ import { Search } from "lucide-react";
 
 import Link from "next/link";
 
-import { getMovieGenres } from "@/lib/api";
 import { HeaderDropdownMenuDemo } from "@/components/ui/header-dropdown-menu";
 import { ModeToggle } from "./ModeToggle";
 import {
@@ -12,11 +11,10 @@ import {
   InputGroupInput,
 } from "@/components/ui/input-group";
 import { SearchInput } from "./search-input";
+import { getGenres } from "@/lib/get-genres";
 
 export const Header = async () => {
-  const genresData = await getMovieGenres();
-
-  console.log("genres", genresData);
+  const genresData = await getGenres();
 
   return (
     <div className="flex justify-between items-center h-14 px-5 py-5 pb-5 xl:px-20">

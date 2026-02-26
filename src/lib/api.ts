@@ -1,11 +1,9 @@
-import { Response, Genre, GenresResponse, Trailer } from "./types";
+import { Response, GenresResponse, Trailer } from "./types";
 
 const MovieUrl = "https://api.themoviedb.org/3/movie/";
 
 const nowPlayingMovieUrl =
   "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1";
-
-const MovieGenres = "https://api.themoviedb.org/3/genre/movie/list?language=en";
 
 const token = process.env.TMDB_TOKEN;
 
@@ -55,13 +53,6 @@ export const getTopRatedMovies = async (
 
 export const getNowPlayingMovies = async (): Promise<Response> => {
   const response = await fetch(nowPlayingMovieUrl, options);
-  const data = await response.json();
-
-  return data;
-};
-
-export const getMovieGenres = async (): Promise<GenresResponse> => {
-  const response = await fetch(MovieGenres, options);
   const data = await response.json();
 
   return data;
