@@ -17,16 +17,16 @@ export const Footer = () => {
             © 2026 Movie Z. All Rights Reserved.
           </div>
         </div>
-        <div className="flex gap-30">
+        <div className="flex flex-wrap gap-30">
           <div className="text-[14px] flex flex-col gap-4">
             <div>Contact Information</div>
             <div className="flex gap-2 items-center">
               <Mail size={15} />
-              <div className="w-20">Email : support@movieZ.com</div>
+              <div className="w-20 max-w-full">Email : support@movieZ.com</div>
             </div>
             <div className="flex gap-2 items-center">
               <Phone size={15} />
-              <div className="w-25">Phone : +976 (11) 123-4567</div>
+              <div className="w-25 max-w-full">Phone : +976 (11) 123-4567</div>
             </div>
           </div>
           <div className="text-[14px] flex flex-col gap-4">

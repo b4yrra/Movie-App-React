@@ -1,7 +1,5 @@
 import { GenresResponse, Response } from "./types";
 
-const MovieGenres = "https://api.themoviedb.org/3/genre/movie/list?language=en";
-
 const token = process.env.TMDB_TOKEN;
 
 const options = {
@@ -13,7 +11,10 @@ const options = {
 };
 
 export const getGenres = async (): Promise<GenresResponse> => {
-  const response = await fetch(MovieGenres, options);
+  const response = await fetch(
+    "https://api.themoviedb.org/3/genre/movie/list?language=en",
+    options,
+  );
   const data = await response.json();
 
   return data;

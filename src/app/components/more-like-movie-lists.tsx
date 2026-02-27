@@ -13,7 +13,6 @@ export const MoreLikeThisMovies = ({
   movies = [],
   showAll = false,
 }: MoreLikeThisMoviesProps) => {
-  // Ensure `displayed` is always an array so `.map` is safe
   const displayed = (showAll ? movies : movies.slice(0, 5)) ?? [];
 
   return (

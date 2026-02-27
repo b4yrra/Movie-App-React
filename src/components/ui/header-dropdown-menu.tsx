@@ -3,27 +3,21 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuPortal,
-  DropdownMenuSeparator,
-  DropdownMenuShortcut,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Genre } from "@/lib/types";
 import { ArrowDown } from "lucide-react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { getGenres } from "@/lib/get-genres";
+import { GenreNames } from "@/app/components/genre-names";
 
-type HeaderDropdownMenuDemoProps = {
-  movie?: { genres?: Genre[] };
-};
+export const HeaderDropdownMenuDemo = async ({
+  selectedGenreId,
+}: {
+  selectedGenreId?: number;
+} = {}) => {
+  const { genres } = await getGenres();
 
-export function HeaderDropdownMenuDemo({ movie }: HeaderDropdownMenuDemoProps) {
-  const genres = movie?.genres ?? [];
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -39,18 +33,9 @@ export function HeaderDropdownMenuDemo({ movie }: HeaderDropdownMenuDemoProps) {
           </div>
         </DropdownMenuGroup>
         <div className="flex flex-wrap pt-4 gap-3">
-          {genres.map((g) => (
-            <Link key={g.id} href={`/genre?genre=${g.id}`}>
-              <Button
-                variant="outline"
-                className="cursor-pointer rounded-full text-[12px]"
-              >
-                {g.name} <ArrowRight />
-              </Button>
-            </Link>
-          ))}
+          <GenreNames genres={genres} selectedGenre={String(selectedGenreId)} />
         </div>
       </DropdownMenuContent>
     </DropdownMenu>
   );
-}
+};
