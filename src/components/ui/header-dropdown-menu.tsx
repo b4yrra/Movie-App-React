@@ -33,7 +33,12 @@ export const HeaderDropdownMenuDemo = async ({
           </div>
         </DropdownMenuGroup>
         <div className="flex flex-wrap pt-4 gap-3">
-          <GenreNames genres={genres} selectedGenre={String(selectedGenreId)} />
+          <GenreNames
+            genres={genres}
+            selectedGenre={
+              selectedGenreId ? String(selectedGenreId) : undefined
+            }
+          />
         </div>
       </DropdownMenuContent>
     </DropdownMenu>

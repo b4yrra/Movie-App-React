@@ -87,9 +87,12 @@ export const SearchInput = () => {
                     </div>
                   </Link>
                 ))}
-                <div className="p-3 border-t-2">
+                <Link
+                  href={`/genre?query=${searchValue}`}
+                  className="p-3 border-t-2 block hover:underline"
+                >
                   See all results for "{searchValue}"
-                </div>
+                </Link>
               </div>
             )}
           </div>

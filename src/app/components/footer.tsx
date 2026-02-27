@@ -14,7 +14,7 @@ export const Footer = () => {
             </button>
           </div>
           <div className="text-[14px]">
-            © 2026 Movie Z. All Rights Reserved.
+            © {new Date().getFullYear()} Movie Z. All Rights Reserved.
           </div>
         </div>
         <div className="flex flex-wrap gap-30">
