@@ -59,7 +59,7 @@ export const MovieDetails = async ({ movie }: MovieListProps) => {
 
         {/* Watch Now button */}
         <div className="flex gap-3">
-          <Link href={`/watch/movie/${movie.id}`}>
+          <Link href={`/movie/${movie.id}`}>
             <button className="flex items-center gap-2 px-6 py-2.5 cursor-pointer bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-medium text-sm transition-colors">
               <Play size={16} fill="white" />
               Watch Now
