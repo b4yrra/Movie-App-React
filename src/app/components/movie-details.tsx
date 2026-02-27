@@ -1,20 +1,18 @@
-import { Genre, MovieDetailResponse } from "@/lib/types";
-import { Star } from "lucide-react";
+import { MovieDetailResponse } from "@/lib/types";
+import { Star, Play } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { MovieDirectors } from "./movie-credits";
 import { getCredtiDetails } from "@/lib/get-credit-details";
-import { Play } from "lucide-react";
 import { MoreLike } from "./more-like-this-footer";
-import { Button } from "@/components/ui/button";
 import { MovieTrailer } from "./movie-trailer";
 import { getMovieDetails as getMovieTrailers } from "@/lib/api";
+import Link from "next/link";
 
 type MovieListProps = {
   movie: MovieDetailResponse;
 };
 
-const TMBD_IMG_URL = "https:image.tmdb.org/t/p/w500";
-const TMBD_IMG_URL_ORIGINAL = "https:image.tmdb.org/t/p/original";
+const TMBD_IMG_URL = "https://image.tmdb.org/t/p/w500";
 
 export const MovieDetails = async ({ movie }: MovieListProps) => {
   const credits = await getCredtiDetails(movie.id);
@@ -47,6 +45,7 @@ export const MovieDetails = async ({ movie }: MovieListProps) => {
             </div>
           </div>
         </div>
+
         <div className="flex gap-5 justify-center">
           <img
             src={`${TMBD_IMG_URL}${movie.poster_path}`}
@@ -57,6 +56,17 @@ export const MovieDetails = async ({ movie }: MovieListProps) => {
             <MovieTrailer movie={movie} trailers={trailers} />
           </div>
         </div>
+
+        {/* Watch Now button */}
+        <div className="flex gap-3">
+          <Link href={`/watch/movie/${movie.id}`}>
+            <button className="flex items-center gap-2 px-6 py-2.5 cursor-pointer bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-medium text-sm transition-colors">
+              <Play size={16} fill="white" />
+              Watch Now
+            </button>
+          </Link>
+        </div>
+
         {movie.genres && movie.genres.length > 0 && (
           <div className="flex flex-wrap gap-2">
             {movie.genres.map((genre) => (
@@ -66,6 +76,7 @@ export const MovieDetails = async ({ movie }: MovieListProps) => {
             ))}
           </div>
         )}
+
         <div className="text-[16px] max-w-full w-360">{movie.overview}</div>
         <div>
           <MovieDirectors credit={credits} />
