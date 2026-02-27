@@ -4,7 +4,7 @@ export const searchMovies = async (
   searchValue: string,
   page: number = 1,
 ): Promise<Response> => {
-  const token = process.env.TMDB_TOKEN;
+  const token = process.env.NEXT_PUBLIC_TMDB_TOKEN;
 
   const response = await fetch(
     `https://api.themoviedb.org/3/search/movie?query=${searchValue}&language=en-US&page=${page}`,
