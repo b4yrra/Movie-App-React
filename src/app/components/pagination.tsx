@@ -11,12 +11,24 @@ import {
 type PaginationBarProps = {
   currentPage: number;
   totalPages: number;
+  query?: string;
+  genre?: string;
 };
 
 export const PaginationBar = ({
   currentPage,
   totalPages,
+  query,
+  genre,
 }: PaginationBarProps) => {
+  const buildPageUrl = (page: number) => {
+    const params = new URLSearchParams();
+    if (query) params.set("query", query);
+    if (genre) params.set("genre", genre);
+    params.set("page", String(page));
+    return `/genre?${params.toString()}`;
+  };
+
   const pages = Array(totalPages)
     .fill(0)
     .map((_, index) => index + 1);
@@ -26,7 +38,7 @@ export const PaginationBar = ({
       <PaginationContent>
         <PaginationItem>
           <PaginationPrevious
-            href={currentPage > 1 ? `?page=${currentPage - 1}` : "#"}
+            href={currentPage > 1 ? buildPageUrl(currentPage - 1) : "#"}
             aria-disabled={currentPage <= 1}
           />
         </PaginationItem>
@@ -38,7 +50,7 @@ export const PaginationBar = ({
           return (
             <PaginationItem key={index}>
               <PaginationLink
-                href={`?page=${pageNum}`}
+                href={buildPageUrl(pageNum)}
                 isActive={pageNum === currentPage}
               >
                 {pageNum}
@@ -55,7 +67,9 @@ export const PaginationBar = ({
 
         <PaginationItem>
           <PaginationNext
-            href={currentPage < totalPages ? `?page=${currentPage + 1}` : "#"}
+            href={
+              currentPage < totalPages ? buildPageUrl(currentPage + 1) : "#"
+            }
             aria-disabled={currentPage >= totalPages}
           />
         </PaginationItem>

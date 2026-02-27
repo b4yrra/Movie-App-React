@@ -24,7 +24,13 @@ export const GenreNames = ({
       ? selectedGenres.filter((g) => g !== newGenre)
       : [...selectedGenres, newGenre];
 
-    router.push(`/genre?genre=${newGenres.join(",")}`);
+    const params = new URLSearchParams();
+    const query = searchParams.get("query");
+    if (query) params.set("query", query);
+    if (newGenres.length > 0) params.set("genre", newGenres.join(","));
+    params.delete("page");
+
+    router.push(`/genre?${params.toString()}`);
   };
 
   return (
