@@ -20,7 +20,7 @@ export const MovieDetails = async ({ movie }: MovieListProps) => {
 
   return (
     <div className="w-360 max-w-full my-20">
-      <div className="flex flex-col gap-5 px-4">
+      <div className="flex flex-col gap-5 px-4 relative">
         <div className="flex justify-between w-full items-center">
           <div className="flex flex-col gap-4">
             <h1 className="text-[36px] font-bold">{movie.title}</h1>
@@ -46,18 +46,17 @@ export const MovieDetails = async ({ movie }: MovieListProps) => {
           </div>
         </div>
 
-        <div className="flex gap-5 justify-center">
+        <div className="flex gap-5 justify-center max-lg:flex-col max-lg:items-center">
           <img
             src={`${TMBD_IMG_URL}${movie.poster_path}`}
             alt={movie.title}
-            className="rounded-t-lg object-cover w-72.5 h-107 max-w-full max-md:hidden"
+            className="rounded-t-lg object-cover w-72.5 h-107 max-w-full max-lg:hidden"
           />
           <div className="max-w-full w-190 h-107">
             <MovieTrailer movie={movie} trailers={trailers} />
           </div>
         </div>
 
-        {/* Watch Now button */}
         <div className="flex gap-3">
           <Link href={`/movie/${movie.id}`}>
             <button className="flex items-center gap-2 px-6 py-2.5 cursor-pointer bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-medium text-sm transition-colors">
