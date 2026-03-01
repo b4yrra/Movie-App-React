@@ -1,7 +1,7 @@
-import { getSimilarMovies } from "@/lib/get-more-like";
 import { MoreLikeThisResult } from "@/lib/more-like-type";
 import { MoreLikeThisMovies } from "./more-like-movie-lists";
 import { CategoriesTag } from "./moviecard-tags";
+import { getSimilarMovies } from "@/lib/get-more-like";
 
 type MoreLikeProps = {
   movieId: string;
@@ -9,7 +9,10 @@ type MoreLikeProps = {
 };
 
 export const MoreLike = async ({ movieId, category }: MoreLikeProps) => {
-  const movieResponse = await getSimilarMovies(movieId);
+  const currentPage = 1;
+  const movieResponse = await getSimilarMovies(movieId, currentPage.toString());
+
+  const total_pages = movieResponse?.total_pages;
 
   return (
     <div className="max-w-full">

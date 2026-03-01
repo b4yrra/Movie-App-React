@@ -3,13 +3,18 @@ import { CategoriesReturn } from "@/app/components/moviecard-tags";
 import { PaginationBar } from "@/app/components/pagination";
 import { getSimilarMovies } from "@/lib/get-more-like";
 
-const Home = async ({ params }: { params: Promise<{ movieId: string }> }) => {
+const Home = async ({
+  params,
+  searchParams, // NEW: read page from URL
+}: {
+  params: Promise<{ movieId: string }>;
+  searchParams: Promise<{ page?: string }>; // NEW
+}) => {
   const { movieId } = await params;
+  const { page } = await searchParams; // NEW
+  const currentPage = Number(page) || 1; // NEW: was hardcoded to 1
 
-  const movieResponse = await getSimilarMovies(movieId, undefined);
-
-  const currentPage = 1;
-  const total_pages = movieResponse?.total_pages;
+  const movieResponse = await getSimilarMovies(movieId, page); // NEW: pass page
 
   return (
     <div className="flex flex-col items-center w-full mb-30">
@@ -19,7 +24,11 @@ const Home = async ({ params }: { params: Promise<{ movieId: string }> }) => {
           <MoreLikeThisMovies movies={movieResponse.results} showAll={true} />
         </div>
         <div className="mt-10">
-          <PaginationBar currentPage={currentPage} totalPages={total_pages} />
+          <PaginationBar
+            currentPage={currentPage} // NEW: was hardcoded to 1
+            totalPages={movieResponse.total_pages}
+            basePath={`/similar-movies/${movieId}`} // NEW: was missing, caused /genre redirect
+          />
         </div>
       </div>
     </div>

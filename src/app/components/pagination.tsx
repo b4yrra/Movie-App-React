@@ -13,6 +13,7 @@ type PaginationBarProps = {
   totalPages: number;
   query?: string;
   genre?: string;
+  basePath?: string; // NEW
 };
 
 export const PaginationBar = ({
@@ -20,8 +21,13 @@ export const PaginationBar = ({
   totalPages,
   query,
   genre,
+  basePath, // NEW
 }: PaginationBarProps) => {
   const buildPageUrl = (page: number) => {
+    // NEW: if basePath provided, use it instead of /genre
+    if (basePath) {
+      return `${basePath}?page=${page}`;
+    }
     const params = new URLSearchParams();
     if (query) params.set("query", query);
     if (genre) params.set("genre", genre);
