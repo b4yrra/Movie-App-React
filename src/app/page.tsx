@@ -3,7 +3,8 @@ import { CarouselBar } from "./components/carousel-bar";
 import { Movies } from "./components/movie-homepage";
 
 const Home = async () => {
-  const { results: NowPlaying } = await getNowPlayingMovies();
+  const data = await getNowPlayingMovies();
+  const NowPlaying = data?.results ?? [];
 
   const topMovies = NowPlaying.slice(0, 3);
   const trailers = await Promise.all(
