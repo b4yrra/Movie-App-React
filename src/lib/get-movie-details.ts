@@ -5,7 +5,8 @@ export const getMovieDetails = async (
 ): Promise<MovieDetailResponse> => {
   const movieDetailsUrl = `https://api.themoviedb.org/3/movie/${movieId}?language=en-US`;
 
-  const token = process.env.TMDB_TOKEN;
+  const token =
+    "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkOWQ4MjI1MjFkZjgxZGY4YzdhYjFlOGIwNGIyYjU5ZSIsIm5iZiI6MTc3MDYzNTMzNi40MzUwMDAyLCJzdWIiOiI2OTg5YzA0ODZiMzMyYjhlZWY1ZDkzOWEiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.-eBs0VvEU5hF3dYTPkFUiXzMFWlRXiVvmNoyyyeaf4o";
 
   const options = {
     method: "GET",
