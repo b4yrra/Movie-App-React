@@ -4,6 +4,14 @@ import { Genre } from "@/lib/types";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 
+// Special pseudo-genre for Mongolian movies (uses language filter, not genre id)
+const MONGOLIA_ID = "mn";
+
+const MONGOLIA_GENRE: Genre = {
+  id: MONGOLIA_ID as unknown as number,
+  name: "Mонгол кинонууд",
+};
+
 export const GenreNames = ({
   genres,
   selectedGenre,
@@ -18,6 +26,8 @@ export const GenreNames = ({
 
   const currentGenre = searchParams.get("genre") ?? selectedGenre ?? "";
   const selectedGenres = currentGenre.split(",").filter(Boolean);
+
+  const allGenres = [MONGOLIA_GENRE, ...genres];
 
   const onSelectGenre = (newGenre: string) => {
     const isIncluded = selectedGenres.includes(newGenre);
@@ -38,12 +48,13 @@ export const GenreNames = ({
 
   return (
     <div className="flex flex-wrap gap-2">
-      {genres.map((g) => {
-        const isSelected = selectedGenres.includes(String(g.id));
+      {allGenres.map((g) => {
+        const id = String(g.id);
+        const isSelected = selectedGenres.includes(id);
         return (
           <Button
-            key={g.id}
-            onClick={() => onSelectGenre(String(g.id))}
+            key={id}
+            onClick={() => onSelectGenre(id)}
             variant={isSelected ? "default" : "outline"}
             className={`cursor-pointer rounded-full text-[12px] ${
               isSelected ? "bg-indigo-600 text-white border-indigo-600" : ""

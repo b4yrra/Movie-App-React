@@ -33,3 +33,17 @@ export const getMovieByGenres = async (
 
   return data;
 };
+
+/** Fetch movies by original spoken language (ISO 639-1 code, e.g. "mn" for Mongolian) */
+export const getMovieByLanguage = async (
+  languageCode: string,
+  page?: string,
+): Promise<Response> => {
+  const response = await fetch(
+    `https://api.themoviedb.org/3/discover/movie?language=en-US&with_original_language=${languageCode}&sort_by=popularity.desc&page=${page ?? 1}`,
+    options,
+  );
+  const data = await response.json();
+
+  return data;
+};

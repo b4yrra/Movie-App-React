@@ -13,7 +13,7 @@ export const Header = () => {
           <Film className="h-5 w-5 text-indigo-700" />
           <Link href={"/"}>
             <button className="text-[16px] italic font-bold text-indigo-700 cursor-pointer">
-              Movie Z
+              Aimarflix
             </button>
           </Link>
         </div>

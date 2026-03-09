@@ -25,7 +25,7 @@ export const MovieList = ({ movies = [], showAll = false }: MovieListProps) => {
             <img
               src={`${TMBD_IMG_URL}${movie.poster_path}`}
               alt={movie.original_name}
-              className="w-full h-auto rounded-t-lg object-cover transition-all duration-300 group-hover:brightness-80"
+              className="w-full  rounded-t-lg object-cover transition-all duration-300 group-hover:brightness-80 xl:h-85 lg:h-65 h-58"
             />
             <div className="p-2 space-y-1">
               <div className="flex gap-1 items-center">
