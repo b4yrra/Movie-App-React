@@ -7,9 +7,11 @@ import { Button } from "@/components/ui/button";
 export const GenreNames = ({
   genres,
   selectedGenre,
+  onSelect,
 }: {
   genres: Genre[];
   selectedGenre?: string;
+  onSelect?: () => void;
 }) => {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -31,6 +33,7 @@ export const GenreNames = ({
     params.delete("page");
 
     router.push(`/genre?${params.toString()}`);
+    onSelect?.();
   };
 
   return (
